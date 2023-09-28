@@ -1,0 +1,9 @@
+# Terraform
+secret.*
+.terraform
+*.backup
+
+ansible/vault_password
+
+# Other
+.idea/
