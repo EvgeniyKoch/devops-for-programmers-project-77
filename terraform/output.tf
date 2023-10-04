@@ -1,3 +1,3 @@
-#output "web_server_ip" {
-#  value = aws_instance.web_server.public_ip
-#}
+data "aws_vpc" "default" {
+  default = true
+}

@@ -1,6 +1,7 @@
 wiki_db_type: postgres
-wiki_db_host: db
+wiki_db_host: education.cfb6pz3xualn.us-west-2.rds.amazonaws.com
 wiki_db_port: 5432
 wiki_db_user: hexlet
 wiki_db_pass: hexletrocks
-wiki_db_name: wiki
+wiki_db_name: education
+datadog_key: c5a8e8ebe1945a565046adbc02e01f1c3180330f

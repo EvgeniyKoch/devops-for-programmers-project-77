@@ -2,20 +2,37 @@
 
 - hosts: webservers
   gather_facts: no
+  become: yes
+
+  pre_tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Ensure Docker service is running
+      systemd:
+        name: docker
+        state: started
+
 
   roles:
     - role: geerlingguy.pip
+      become: yes
       tags: pip
 
     - role: datadog.datadog
-      become: yes
       tags: datadog
 
   tasks:
     - name: Start Wiki Application
       community.docker.docker_container:
         name: app
-        image: ghcr.io/requarks/wiki:2.5
+        image: requarks/wiki:2.5
         restart_policy: always
         state: started
         ports:
@@ -23,8 +40,9 @@
         env:
           DB_TYPE: "{{ wiki_db_type }}"
           DB_HOST: "{{ wiki_db_host }}"
-          DB_PORT: "{{ wiki_db_port }}"
+          DB_PORT: "{{ wiki_db_port | string }}"
           DB_USER: "{{ wiki_db_user }}"
           DB_PASS: "{{ wiki_db_pass }}"
           DB_NAME: "{{ wiki_db_name }}"
+
 
