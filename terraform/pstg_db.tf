@@ -3,7 +3,7 @@ resource "aws_db_instance" "pstg_db" {
   instance_class         = "db.t3.micro"
   allocated_storage      = 5
   engine                 = "postgres"
-  engine_version         = "14.3"
+  engine_version         = "14.7"
   username               = "hexlet"
   password               = "hexletrocks"
   parameter_group_name   = aws_db_parameter_group.education.name

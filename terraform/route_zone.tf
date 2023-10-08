@@ -15,6 +15,14 @@ resource "aws_route53_record" "cert_validation" {
   ttl     = 60
 }
 
+resource "aws_route53_record" "my_server" {
+  zone_id = aws_route53_zone.my_zone.zone_id
+  name    = "@"
+  type    = "CNAME"
+  ttl     = 300
+  records = [aws_lb.my_lb.dns_name]
+}
+
 resource "aws_acm_certificate_validation" "cert_validation" {
   certificate_arn         = aws_acm_certificate.cert.arn
   validation_record_fqdns = [aws_route53_record.cert_validation.fqdn]
