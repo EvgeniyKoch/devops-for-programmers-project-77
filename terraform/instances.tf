@@ -1,8 +1,8 @@
 resource "aws_instance" "web_servers" {
   count         = 2
-  ami           = "ami-05c9a95d305c1f5a3"
-  instance_type = "t2.micro"
-  key_name      = "MyAWSKey"
+  ami           = var.aws_ami_id
+  instance_type = var.aws_instance_type
+  key_name      = var.aws_key_name
 
   vpc_security_group_ids = [aws_security_group.web_sg.id]
 

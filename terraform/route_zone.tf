@@ -1,9 +1,9 @@
 resource "aws_route53_zone" "my_zone" {
-  name = "evgkoch.site"
+  name = var.domain_name
 }
 
 resource "aws_acm_certificate" "cert" {
-  domain_name       = "evgkoch.site"
+  domain_name       = var.domain_name
   validation_method = "DNS"
 }
 
@@ -17,7 +17,7 @@ resource "aws_route53_record" "cert_validation" {
 
 resource "aws_route53_record" "my_server" {
   zone_id = aws_route53_zone.my_zone.zone_id
-  name    = "evgkoch.site"
+  name    = var.domain_name
   type    = "A"
 
   alias {
