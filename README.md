@@ -16,3 +16,4 @@
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/EvgeniyKoch/devops-for-programmers-project-77/workflows/hexlet-check/badge.svg)](https://github.com/EvgeniyKoch/devops-for-programmers-project-77/actions)
+![Upmon Status](https://www.upmon.com/badge/e783c7f8-5749-4160-8747-1472cc/wMk6DASm-2.svg)
