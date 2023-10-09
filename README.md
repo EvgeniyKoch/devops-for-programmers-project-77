@@ -12,6 +12,7 @@
 - *A load balancer that receives requests over HTTPS and forwards them to the web servers.*
 - *A database as a service.*
 
+### The project is available at https://evgkoch.site
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/EvgeniyKoch/devops-for-programmers-project-77/workflows/hexlet-check/badge.svg)](https://github.com/EvgeniyKoch/devops-for-programmers-project-77/actions)
