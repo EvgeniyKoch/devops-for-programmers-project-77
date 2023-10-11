@@ -1,11 +1,13 @@
 variable "pstg_db_password" {
   description = "Password for the database"
   type        = string
+  sensitive   = true
 }
 
 variable "aws_key_name" {
   description = "The name of the AWS key pair"
   type        = string
+  sensitive   = true
 }
 
 variable "pstg_db_identifier"   {
@@ -18,14 +20,15 @@ variable "pstg_db_username" {
   type        = string
 }
 
-variable "pstg_db_port" {
-  description = "Port for the database"
-  type        = number
-}
-
 variable "pstg_db_host" {
   description = "Host for the database"
   type        = string
+}
+
+variable "pstg_db_port" {
+  description = "Port for the database"
+  type        = number
+  default     = 5432
 }
 
 variable "aws_ami_id" {
@@ -42,4 +45,22 @@ variable "aws_instance_type" {
 variable "domain_name" {
   description = "Domain name"
   type        = string
+}
+
+variable "datadog_api_key" {
+  description = "Datadog api key"
+  type        = string
+  sensitive   = true
+}
+
+variable "datadog_app_key" {
+  description = "Datadog app key"
+  type        = string
+  sensitive   = true
+}
+
+variable "datadog_api_url" {
+  description = "Datadog api url"
+  type        = string
+  sensitive   = true
 }

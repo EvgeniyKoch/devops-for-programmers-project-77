@@ -25,8 +25,8 @@ resource "aws_db_parameter_group" "education" {
 provider "postgresql" {
   host            = var.pstg_db_host
   port            = var.pstg_db_port
-  username        = var.pstg_db_username
-  password        = var.pstg_db_password
+  username        = aws_db_instance.pstg_db.username
+  password        = aws_db_instance.pstg_db.password
   sslmode         = "require"
   connect_timeout = 15
 }

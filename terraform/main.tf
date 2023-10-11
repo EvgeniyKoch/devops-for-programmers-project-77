@@ -8,17 +8,18 @@ terraform {
       source  = "cyrilgdn/postgresql"
       version = "1.20.0"
     }
-  }
-
-  backend "s3" {
-    bucket         = "hex-tr-bucket"
-    key            = "terraform/state"
-    region         = "us-west-2"
-    dynamodb_table = "hex-tr-DynamoDB"
-    encrypt        = true
+    datadog = {
+      source = "DataDog/datadog"
+    }
   }
 }
 
 provider "aws" {
   region  = "us-west-2"
+}
+
+provider "datadog" {
+  api_key = var.datadog_api_key
+  app_key = var.datadog_app_key
+  api_url = var.datadog_api_url
 }

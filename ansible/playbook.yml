@@ -24,9 +24,6 @@
       become: yes
       tags: pip
 
-    - role: datadog.datadog
-      tags: datadog
-
   tasks:
     - name: Start Wiki Application
       community.docker.docker_container:
@@ -43,10 +40,3 @@
           DB_USER: "{{ wiki_db_user }}"
           DB_PASS: "{{ wiki_db_pass }}"
           DB_NAME: "{{ wiki_db_name }}"
-
-    - name: Signal {{ upmon_state }} using UUID
-      uri:
-        url: "https://upmon.net/{{ upmon_uuid }}/{{ upmon_state }}"
-        method: GET
-        status_code: 200
-      register: upmon_response
