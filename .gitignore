@@ -7,3 +7,4 @@ ansible/vault_password
 
 # Other
 .idea/
+.DS_Store

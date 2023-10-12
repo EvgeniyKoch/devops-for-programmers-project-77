@@ -12,7 +12,27 @@
 - *A load balancer that receives requests over HTTPS and forwards them to the web servers.*
 - *A database as a service.*
 
-### The project is available at https://evgkoch.site
+### To start project
+- Create *secret.auto.tfvars* with yours credential:
+    - ``aws_ami_id = "your ami id"``
+    - ``aws_key_name       = "your aws key"``
+    - ``pstg_db_password   = "pswd for wiki's db"``
+    - ``pstg_db_identifier = "db name for wiki's db"``
+    - ``pstg_db_username   = "username for wiki's db"``
+    - ``datadog_api_key    = "api key for datadog"``
+    - ``datadog_app_key    = "app key for datadog"``
+    - ``datadog_api_url    = "datadog url"``
+- In *prod.auto.tfvars* to change *domain_name* on yours 
+- Create file *vault_password* with password for ansible-vault and put it into *ansible*  directory. 
+- Change the path to your private key in the variable ansible_ssh_private_key_file in the *ansible/group_vars/webservers/vars* directory.
+- Then make commands:
+  - ``make init``
+  - ``make plan`` 
+  - ``make apply`` => to create infrastructure on aws
+  - ``make galaxy_install``
+  - ``make deploy_vault``  => to deploy application
+
+### This project is available at https://evgkoch.site
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/EvgeniyKoch/devops-for-programmers-project-77/workflows/hexlet-check/badge.svg)](https://github.com/EvgeniyKoch/devops-for-programmers-project-77/actions)

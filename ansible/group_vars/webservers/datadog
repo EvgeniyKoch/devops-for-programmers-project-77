@@ -1,0 +1,10 @@
+datadog_api_key: "{{ datadog_api_key }}"
+datadog_site: "{{ datadog_api_url }}"
+datadog_checks:
+  http_check:
+    init_config:
+    instances:
+      - name: HTTP Check
+        url: http://localhost:8080
+        timeout: 5
+        method: GET

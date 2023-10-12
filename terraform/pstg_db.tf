@@ -23,13 +23,14 @@ resource "aws_db_parameter_group" "education" {
 }
 
 provider "postgresql" {
-  host            = var.pstg_db_host
+  host            = element(split(":", aws_db_instance.pstg_db.endpoint), 0)
   port            = var.pstg_db_port
   username        = aws_db_instance.pstg_db.username
   password        = aws_db_instance.pstg_db.password
   sslmode         = "require"
   connect_timeout = 15
 }
+
 
 resource "postgresql_database" "education_db" {
   name  = var.pstg_db_identifier

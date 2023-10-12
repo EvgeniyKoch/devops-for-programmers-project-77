@@ -24,6 +24,9 @@
       become: yes
       tags: pip
 
+    - role: datadog.datadog
+      tags: datadog
+
   tasks:
     - name: Start Wiki Application
       community.docker.docker_container:

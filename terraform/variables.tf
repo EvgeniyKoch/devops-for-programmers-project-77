@@ -20,10 +20,6 @@ variable "pstg_db_username" {
   type        = string
 }
 
-variable "pstg_db_host" {
-  description = "Host for the database"
-  type        = string
-}
 
 variable "pstg_db_port" {
   description = "Port for the database"
