@@ -33,7 +33,7 @@ provider "postgresql" {
 
 
 resource "postgresql_database" "education_db" {
-  name  = var.pstg_db_identifier
-  owner = var.pstg_db_username
+  name       = var.pstg_db_identifier
+  owner      = var.pstg_db_username
   depends_on = [aws_db_instance.pstg_db]
 }

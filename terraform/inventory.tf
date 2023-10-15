@@ -1,6 +1,6 @@
 resource "local_file" "AnsibleInventory" {
   filename = "${path.module}/../ansible/inventory.yml"
-  content = <<-EOT
+  content  = <<-EOT
     all:
       children:
         webservers:

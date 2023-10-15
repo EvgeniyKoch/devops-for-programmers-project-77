@@ -1,6 +1,6 @@
 resource "local_file" "CredentialsTmp" {
   filename = "${path.module}/../ansible/group_vars/webservers/vault"
-  content = <<-EOT
+  content  = <<-EOT
     wiki_db_host: ${element(split(":", aws_db_instance.pstg_db.endpoint), 0)}
     wiki_db_port: ${aws_db_instance.pstg_db.port}
     wiki_db_user: ${aws_db_instance.pstg_db.username}

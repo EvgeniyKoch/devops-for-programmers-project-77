@@ -21,3 +21,6 @@ destroy:
 
 init:
 	make -C terraform init
+
+terraform_format:
+	make -C terraform terraform_format

@@ -10,7 +10,7 @@ variable "aws_key_name" {
   sensitive   = true
 }
 
-variable "pstg_db_identifier"   {
+variable "pstg_db_identifier" {
   description = "Identifier for the database"
   type        = string
 }

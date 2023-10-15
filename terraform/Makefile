@@ -9,3 +9,6 @@ apply:
 
 destroy:
 	terraform destroy
+
+terraform_format:
+	terraform fmt
