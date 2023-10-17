@@ -1,8 +1,8 @@
 resource "datadog_monitor" "lb_5xx_errors" {
-  name               = "High number of 5xx errors"
-  type               = "metric alert"
-  message            = "High number of 5xx errors detected for Load Balancer my-lb"
-  query              = "sum(last_5m):aws.elb.httpcode_elb_5xx_count{loadbalancer:my-lb} >= 10"
+  name    = "High number of 5xx errors"
+  type    = "metric alert"
+  message = "High number of 5xx errors detected for Load Balancer my-lb"
+  query   = "sum(last_5m):aws.elb.httpcode_elb_5xx_count{loadbalancer:my-lb} >= 10"
 
   monitor_thresholds {
     critical = 10
@@ -10,11 +10,11 @@ resource "datadog_monitor" "lb_5xx_errors" {
 }
 
 resource "datadog_monitor" "http_check" {
-  name               = "App Health Check"
-  type               = "metric alert"
-  message            = "Приложение недоступно!"
-  tags               = ["env:production"]
-  notify_no_data     = false
+  name           = "App Health Check"
+  type           = "metric alert"
+  message        = "Приложение недоступно!"
+  tags           = ["env:production"]
+  notify_no_data = false
 
   query = "avg(last_5m):avg:network.http.can_connect{*} by {host} <= 0"
 
