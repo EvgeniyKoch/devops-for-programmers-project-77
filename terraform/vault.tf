@@ -7,7 +7,7 @@ resource "local_file" "CredentialsTmp" {
     wiki_db_pass: ${aws_db_instance.pstg_db.password}
     wiki_db_name: ${var.pstg_db_identifier}
     wiki_db_type: ${aws_db_instance.pstg_db.engine}
-    datadog_api_key: ${var.datadog_api_key}
+    datadog_key: ${var.datadog_api_key}
     datadog_api_url: ${var.datadog_api_url}
   EOT
 }
