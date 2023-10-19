@@ -4,7 +4,7 @@ datadog_checks:
   http_check:
     init_config:
     instances:
-      - name: HTTP Check
-        url: http://localhost:8080
+      - name: Application Check
+        url: http://localhost:3000
         timeout: 5
         method: GET

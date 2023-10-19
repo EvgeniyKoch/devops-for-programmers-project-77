@@ -60,3 +60,9 @@ variable "datadog_api_url" {
   type        = string
   sensitive   = true
 }
+
+variable "datadog_url" {
+  description = "Datadog api url"
+  type        = string
+  sensitive   = true
+}

@@ -3,6 +3,7 @@ resource "datadog_monitor" "lb_5xx_errors" {
   type    = "metric alert"
   message = "High number of 5xx errors detected for Load Balancer my-lb"
   query   = "sum(last_5m):aws.elb.httpcode_elb_5xx_count{loadbalancer:my-lb} >= 10"
+  tags    = ["env:production"]
 
   monitor_thresholds {
     critical = 10
@@ -10,26 +11,23 @@ resource "datadog_monitor" "lb_5xx_errors" {
 }
 
 resource "datadog_monitor" "http_check" {
-  name           = "App Health Check"
-  type           = "metric alert"
-  message        = "Приложение недоступно!"
-  tags           = ["env:production"]
-  notify_no_data = false
-
-  query = "avg(last_5m):avg:network.http.can_connect{*} by {host} <= 0"
+  name    = "Http checking new updated"
+  type    = "service check"
+  message = "Service checking"
+  query   = "\"datadog.agent.up\".over(\"*\").by(\"host\").last(2).count_by_status()"
 
   monitor_thresholds {
-    ok                = 1
-    warning           = 0.4
-    warning_recovery  = 0.5
-    critical          = 0
-    critical_recovery = 0.5
+    critical = 1
+    warning  = 0.5
+    ok       = 0
   }
 
-  require_full_window = false
+  notify_no_data    = true
+  renotify_interval = 60
+  notify_audit      = false
+  timeout_h         = 24
+  include_tags      = true
 }
-
-
 
 resource "datadog_monitor" "postgres_active_connections" {
   name               = "PostgreSQL Active Connections"
@@ -45,7 +43,44 @@ resource "datadog_monitor" "postgres_active_connections" {
     ok       = 0
   }
 
-  notify_no_data    = false
   renotify_interval = 20
 }
 
+
+resource "datadog_dashboard" "app_health_dashboard" {
+  title       = "Application Health"
+  description = "A Dashboard to monitor application health."
+  layout_type = "ordered"
+
+  widget {
+    alert_graph_definition {
+      alert_id = datadog_monitor.http_check.id
+      title    = "HTTP Health Check"
+      viz_type = "timeseries"
+    }
+  }
+
+  widget {
+    alert_value_definition {
+      alert_id  = datadog_monitor.lb_5xx_errors.id
+      precision = 2
+      unit      = "error"
+      title     = "Load Balancer 5xx Errors"
+    }
+  }
+
+  widget {
+    alert_value_definition {
+      alert_id  = datadog_monitor.postgres_active_connections.id
+      precision = 2
+      unit      = "connections"
+      title     = "Postgres Active Connections"
+    }
+  }
+
+  template_variable {
+    name     = "env"
+    prefix   = "host"
+    defaults = ["production"]
+  }
+}
