@@ -11,8 +11,8 @@ generate_secret:
 	ansible-playbook --ask-vault-pass playbooks/prepare_tf_vars_playbook.yml
 
 deploy:
-	ansible-playbook -i inventory.yml --ask-vault-pass playbooks/playbook.yml
+	ansible-playbook -i inventory.yml --ask-vault-pass playbook.yml
 
 deploy_vault:
-	ansible-playbook -i inventory.yml --vault-password-file vault_password playbooks/playbook.yml
+	ansible-playbook -i inventory.yml --vault-password-file vault_password playbook.yml
 
