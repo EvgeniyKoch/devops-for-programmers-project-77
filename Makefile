@@ -1,14 +1,23 @@
+init: galaxy_install generate_secret init_terraform
+deploy: apply deploy_ansible
+
 galaxy_install:
 	make -C ansible galaxy_install
+
+generate_secret:
+	make -C ansible generate_secret
 
 pip:
 	make -C ansible pip
 
-deploy:
+deploy_ansible:
 	make -C ansible deploy
 
 deploy_vault:
 	make -C ansible deploy_vault
+
+init_terraform:
+	make -C terraform init
 
 plan:
 	make -C terraform plan
@@ -19,8 +28,5 @@ apply:
 destroy:
 	make -C terraform destroy
 
-init:
-	make -C terraform init
-
-terraform_format:
-	make -C terraform terraform_format
+format:
+	make -C terraform format

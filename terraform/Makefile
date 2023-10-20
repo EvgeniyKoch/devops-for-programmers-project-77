@@ -10,5 +10,5 @@ apply:
 destroy:
 	terraform destroy
 
-terraform_format:
+format:
 	terraform fmt

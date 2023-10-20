@@ -11,26 +11,31 @@
 - *Two web servers with an application (in this project, a ready-made application is used) running inside Docker containers.*
 - *A load balancer that receives requests over HTTPS and forwards them to the web servers.*
 - *A database as a service.*
+- The *ansible/group_vars/webservers/secret_vars_vault.yml* file contains the credentials for the infrastructure:
+  - ``aws_ami_id: "your ami id"``
+  - ``aws_key_name: "your aws key"``
+  - ``pstg_db_password: "pswd for wiki's db"``
+  - ``pstg_db_identifier: "db name for wiki's db"``
+  - ``pstg_db_username: "username for wiki's db"``
+  - ``datadog_api_key: "api key for datadog"``
+  - ``datadog_app_key: "app key for datadog"``
+  - ``datadog_api_url: "datadog url"``
+It's need to generate the *secret.auto.tfvars* file for Terraform in an automated and secure way and also.
+- The path to the private key is in the variable ansible_ssh_private_key_file in the *ansible/group_vars/webservers/vars.yml* directory.
 
 ### To start project
-- Create *secret.auto.tfvars* with yours credential:
-    - ``aws_ami_id = "your ami id"``
-    - ``aws_key_name       = "your aws key"``
-    - ``pstg_db_password   = "pswd for wiki's db"``
-    - ``pstg_db_identifier = "db name for wiki's db"``
-    - ``pstg_db_username   = "username for wiki's db"``
-    - ``datadog_api_key    = "api key for datadog"``
-    - ``datadog_app_key    = "app key for datadog"``
-    - ``datadog_api_url    = "datadog url"``
-- In *prod.auto.tfvars* to change *domain_name* on yours 
-- Create file *vault_password* with password for ansible-vault and put it into *ansible*  directory. 
-- Change the path to your private key in the variable ansible_ssh_private_key_file in the *ansible/group_vars/webservers/vars* directory.
-- Then make commands:
-  - ``make init``
-  - ``make plan`` 
-  - ``make apply`` => to create infrastructure on aws
-  - ``make galaxy_install``
-  - ``make deploy_vault``  => to deploy application
+Make commands in root folder:
+  - ``make init`` - generate the *secret.auto.tfvars* file for Terraform in an automated and secure way, make galaxy install and init terraform (ansilbe-vault password required)
+  - ``make deploy`` - to deploy application (ansilbe-vault password required)
+
+### Other commands:
+ - ``make init_terraform`` init terraform
+ - ``make plan`` - terraform plan
+ - ``make apply`` terraform apply
+ - ``make format`` terraform frt
+ - ``make galaxy_install`` - ansible-galaxy install
+ - ``make deploy_ansible`` - ansible deploy
+ - ``make deploy_vault`` - ansible deploy with vault password file
 
 ### This project is available at https://evgkoch.site
 

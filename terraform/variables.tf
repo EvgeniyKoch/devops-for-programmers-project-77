@@ -41,6 +41,7 @@ variable "aws_instance_type" {
 variable "domain_name" {
   description = "Domain name"
   type        = string
+  default     = "evgkoch.site"
 }
 
 variable "datadog_api_key" {
