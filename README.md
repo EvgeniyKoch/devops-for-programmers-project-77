@@ -5,7 +5,7 @@
 
 *The installation of necessary applications on prepared servers is performed using **Ansible**. It automates actions on servers, from installing applications to fine-tuning configuration files. Ready-made roles can also be used, which are available on Ansible Galaxy. This significantly speeds up the deployment of infrastructure.*
 
-*he application itself runs in a Docker container. **Docker** allows you to package everything needed for the application (process) to run into an image and run it in isolation from the host system. This prevents conflicts between different application versions and simplifies deployment. Docker has become an industry standard for deploying applications, and most deployment approaches and schemes involve the use of Docker containers*.
+*The application itself runs in a Docker container. **Docker** allows you to package everything needed for the application (process) to run into an image and run it in isolation from the host system. This prevents conflicts between different application versions and simplifies deployment. Docker has become an industry standard for deploying applications, and most deployment approaches and schemes involve the use of Docker containers*.
 
 ### Description:
 - *Two web servers with an application (in this project, a ready-made application is used) running inside Docker containers.*
