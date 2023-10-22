@@ -11,7 +11,7 @@
 - *Two web servers with an application (in this project, a ready-made application is used) running inside Docker containers.*
 - *A load balancer that receives requests over HTTPS and forwards them to the web servers.*
 - *A database as a service.*
-- The *ansible/group_vars/webservers/secret_vars_vault.yml* file contains the credentials for the infrastructure:
+- The *ansible/group_vars/all/secret_vars_vault.yml* file contains the credentials for the infrastructure:
   - ``aws_ami_id: "your ami id"``
   - ``aws_key_name: "your aws key"``
   - ``pstg_db_password: "pswd for wiki's db"``
