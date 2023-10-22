@@ -8,7 +8,7 @@ datadog:
 	ansible-playbook --check playbook.yml -i inventory.yml -t datadog
 
 generate_secret:
-	ansible-playbook --ask-vault-pass playbooks/prepare_tf_vars_playbook.yml
+	ansible-playbook --ask-vault-pass prepare_tf_vars_playbook.yml
 
 deploy:
 	ansible-playbook -i inventory.yml --ask-vault-pass playbook.yml

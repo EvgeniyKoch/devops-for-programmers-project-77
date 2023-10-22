@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: Generate Terraform variable file from template
+      template:
+        src: templates/terraform_secret_vars.j2
+        dest: ../terraform/secret.auto.tfvars
