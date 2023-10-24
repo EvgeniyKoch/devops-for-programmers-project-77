@@ -35,7 +35,7 @@
         restart_policy: always
         state: started
         ports:
-          - 80:3000
+          - "{{ expose_port }}:3000"
         env:
           DB_TYPE: "{{ wiki_db_type }}"
           DB_HOST: "{{ wiki_db_host }}"
@@ -43,3 +43,5 @@
           DB_USER: "{{ pstg_db_username }}"
           DB_PASS: "{{ pstg_db_password }}"
           DB_NAME: "{{ pstg_db_identifier }}"
+      tags:
+        - deploy

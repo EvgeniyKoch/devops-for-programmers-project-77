@@ -1,14 +1,14 @@
-init:
+initialize_terraform:
 	terraform init
 
-plan:
+plan_terraform:
 	terraform plan
 
-apply:
+apply_terraform:
 	terraform apply
 
-destroy:
+destroy_terraform:
 	terraform destroy
 
-format:
+format_terraform:
 	terraform fmt

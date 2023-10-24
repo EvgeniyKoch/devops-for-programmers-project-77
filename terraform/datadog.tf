@@ -35,7 +35,7 @@ resource "datadog_monitor" "postgres_active_connections" {
   message            = "High number of active connections on {{host.name}}. Investigate immediately."
   escalation_message = "Active connections are still high!"
 
-  query = "avg(last_5m):avg:postgresql.connections{db:${aws_db_instance.pstg_db.identifier}} by {host} >= 90"
+  query = "avg(last_5m):avg:postgresql.connections{db:${aws_db_instance.postgres_db.identifier}} by {host} >= 90"
 
   monitor_thresholds {
     critical = 90
@@ -45,7 +45,6 @@ resource "datadog_monitor" "postgres_active_connections" {
 
   renotify_interval = 20
 }
-
 
 resource "datadog_dashboard" "app_health_dashboard" {
   title       = "Application Health"

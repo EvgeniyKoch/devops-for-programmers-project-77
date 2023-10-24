@@ -5,6 +5,6 @@ datadog_checks:
     init_config:
     instances:
       - name: Application Check
-        url: http://localhost:80
+        url: "http://localhost:{{ expose_port }}"
         timeout: 5
         method: GET

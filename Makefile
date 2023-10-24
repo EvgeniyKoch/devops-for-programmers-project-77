@@ -1,32 +1,29 @@
-init: galaxy_install generate_secret init_terraform
-deploy: apply deploy_ansible
+init: inst_galaxy gen_secret init_tf
+deploy: apply_tf deploy_ans
 
-galaxy_install:
-	make -C ansible galaxy_install
+inst_galaxy:
+	make -C ansible install_galaxy
 
-generate_secret:
+gen_secret:
 	make -C ansible generate_secret
 
-pip:
-	make -C ansible pip
+run_pip:
+	make -C ansible run_pip_tasks
 
-deploy_ansible:
-	make -C ansible deploy
+deploy_ans:
+	make -C ansible deploy_with_ansible
 
-deploy_vault:
-	make -C ansible deploy_vault
+init_tf:
+	make -C terraform initialize_terraform
 
-init_terraform:
-	make -C terraform init
+plan_tf:
+	make -C terraform plan_terraform
 
-plan:
-	make -C terraform plan
+apply_tf:
+	make -C terraform apply_terraform
 
-apply:
-	make -C terraform apply
+destroy_tf:
+	make -C terraform destroy_terraform
 
-destroy:
-	make -C terraform destroy
-
-format:
-	make -C terraform format
+fmt_tf:
+	make -C terraform format_terraform

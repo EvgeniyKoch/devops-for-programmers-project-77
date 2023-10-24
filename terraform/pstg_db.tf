@@ -1,4 +1,4 @@
-resource "aws_db_instance" "pstg_db" {
+resource "aws_db_instance" "postgres_db" {
   identifier             = var.pstg_db_identifier
   instance_class         = "db.t3.micro"
   allocated_storage      = 5
@@ -23,10 +23,10 @@ resource "aws_db_parameter_group" "education" {
 }
 
 provider "postgresql" {
-  host            = element(split(":", aws_db_instance.pstg_db.endpoint), 0)
+  host            = element(split(":", aws_db_instance.postgres_db.endpoint), 0)
   port            = var.pstg_db_port
-  username        = aws_db_instance.pstg_db.username
-  password        = aws_db_instance.pstg_db.password
+  username        = aws_db_instance.postgres_db.username
+  password        = aws_db_instance.postgres_db.password
   sslmode         = "require"
   connect_timeout = 15
 }
@@ -35,5 +35,5 @@ provider "postgresql" {
 resource "postgresql_database" "education_db" {
   name       = var.pstg_db_identifier
   owner      = var.pstg_db_username
-  depends_on = [aws_db_instance.pstg_db]
+  depends_on = [aws_db_instance.postgres_db]
 }

@@ -25,17 +25,18 @@ It's need to generate the *secret.auto.tfvars* file for Terraform in an automate
 
 ### To start project
 Make commands in root folder:
+  - *Set ``export ANSIBLE_SSH_KEY=/path/to/your/private/key``*
   - ``make init`` - generate the *secret.auto.tfvars* file for Terraform in an automated and secure way, make galaxy install and init terraform (ansilbe-vault password required)
   - ``make deploy`` - to deploy application (ansilbe-vault password required)
 
 ### Other commands:
- - ``make init_terraform`` init terraform
- - ``make plan`` - terraform plan
- - ``make apply`` terraform apply
- - ``make format`` terraform frt
- - ``make galaxy_install`` - ansible-galaxy install
- - ``make deploy_ansible`` - ansible deploy
- - ``make deploy_vault`` - ansible deploy with vault password file
+ - ``make init_tf`` init terraform
+ - ``make plan_tf`` - terraform plan
+ - ``make apply_tf`` terraform apply
+ - ``make fmt_tf`` terraform frt
+ - ``make inst_galaxy`` - ansible-galaxy install
+ - ``make deploy_ans`` - ansible deploy
+ - ``make deploy_vlt`` - ansible deploy with vault password file
 
 ### This project is available at https://evgkoch.site
 
